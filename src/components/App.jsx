@@ -1,21 +1,35 @@
 // import { Phonebook } from './Phonebook/Phonebook';
 import React, { Component } from 'react';
 import { Form } from './Form/Form';
-// import { nanoid } from 'nanoid';
+import { nanoid } from 'nanoid';
+import { Section } from './Section/Section';
 
 export class App extends Component {
   state = {
     contacts: [],
   };
 
-  formSubmiteHandler = data => {
-    console.log(data);
+  // formSubmiteHandler = data => {
+  //   console.log(data);
+  // };
+
+  addContact = name => {
+    const contact = {
+      name,
+      id: nanoid(),
+    };
+
+    this.setState(prevState => ({
+      contacts: [contact, ...prevState.contacts],
+    }));
   };
 
   render() {
     return (
       <div>
-        <Form onFormSubmit={this.formSubmiteHandler}></Form>
+        <Section title="Phonebook">
+          <Form onFormSubmit={this.addContact}></Form>
+        </Section>
       </div>
     );
   }
