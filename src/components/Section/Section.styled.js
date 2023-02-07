@@ -7,8 +7,8 @@ export const SectionContainer = styled.section`
     display: flex;
     flex-direction: column;
     justify-content: center;
-    margin: 0 auto 20px;
-    padding: 15px;
+    margin: 20px auto 20px;
+    padding: 40px;
     width: 600px;
 `;
 
@@ -16,4 +16,6 @@ export const SectionTitle = styled.h2`
   font-size: 30px;
   text-align: center;
   margin-bottom: 20px;
+  font-weight: 900;
+  color: blue;
 `;

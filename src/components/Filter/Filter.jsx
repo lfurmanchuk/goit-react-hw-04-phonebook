@@ -1,9 +1,11 @@
-// Отримання значень з поля фільтр Принимает значение с поля Find contacts by name і метод, що записує в state
+import { Label, Input } from './Filter.styled';
+
+// Отримання значень з поля фільтр. Приймає значення с поля Find contacts by name і метод, що записує в state
 export const Filter = ({ value, onChange }) => {
   return (
-    <label>
+    <Label>
       Find contacts by name
-      <input
+      <Input
         type="text"
         name="filter"
         value={value}
@@ -12,6 +14,6 @@ export const Filter = ({ value, onChange }) => {
         title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
         required
       />
-    </label>
+    </Label>
   );
 };

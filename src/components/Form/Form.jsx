@@ -1,25 +1,32 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { nanoid } from 'nanoid';
+import { Label, Input, AddBtn, FormField } from './Form.styled';
 
 export class Form extends Component {
+  // PropTypes як статична властивысть
+  static propTypes = {
+    onSubmit: PropTypes.func.isRequired,
+  };
+
+  // Стейт форми з початковим пустим значенням
   state = {
     name: '',
     number: '',
   };
 
+  // змінна ID
   nameInputId = nanoid();
   telInputId = nanoid();
 
+  // Метод, що спостерігає за інпутами і записує в state їх значення
   handleChange = e => {
     const { name, value } = e.currentTarget;
 
     this.setState({ [name]: value });
-
-    // const targetInput = e.currentTarget;
-    // this.setState({ [targetInput.name]: targetInput.value });
   };
 
+  // Метод на відправці форми, що формує зі state контакт і передає до зовнішного методу
   handleSubmit = e => {
     e.preventDefault();
 
@@ -29,7 +36,7 @@ export class Form extends Component {
       number: this.state.number,
     };
 
-    // Зовнішній метод в пропсах класа
+    // Зовнішній метод в пропсах класу
     this.props.onFormSubmit(contact);
 
     this.reset();
@@ -43,9 +50,11 @@ export class Form extends Component {
   render() {
     return (
       <form autoComplete="off" onSubmit={this.handleSubmit}>
-        <label htmlFor="name" id={this.nameInputId}>
-          Name
-          <input
+        <FormField>
+          <Label htmlFor="name" id={this.nameInputId}>
+            Name
+          </Label>
+          <Input
             type="text"
             name="name"
             pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
@@ -57,10 +66,12 @@ export class Form extends Component {
             // Пишемо значення до state
             value={this.state.name}
           />
-        </label>
-        <label htmlFor="tel" id={this.telInputId}>
-          Number
-          <input
+        </FormField>
+        <FormField>
+          <Label htmlFor="tel" id={this.telInputId}>
+            Number
+          </Label>
+          <Input
             type="tel"
             name="number"
             pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
@@ -72,8 +83,8 @@ export class Form extends Component {
             // Спостерігаючий метод
             onChange={this.handleChange}
           />
-        </label>
-        <button type="submit">Add contact</button>
+        </FormField>
+        <AddBtn type="submit">Add contact</AddBtn>
       </form>
     );
   }

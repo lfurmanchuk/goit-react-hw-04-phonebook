@@ -1,10 +1,10 @@
-// import { Phonebook } from './Phonebook/Phonebook';
 import React, { Component } from 'react';
 import { Form } from './Form/Form';
 import { nanoid } from 'nanoid';
 import { Section } from './Section/Section';
 import { Filter } from './Filter/Filter';
 import { ContactList } from './FormList/FormList';
+import { SectionTitle } from './Section/Section.styled';
 
 export class App extends Component {
   // Стейт з базовими даними відповідно до завдання
@@ -74,7 +74,7 @@ export class App extends Component {
     return (
       <div
         style={{
-          height: '100vh',
+          // height: '100vh',
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'center',
@@ -84,9 +84,7 @@ export class App extends Component {
       >
         <Section title="Phonebook">
           <Form onFormSubmit={this.addContact}></Form>
-          {/* <h2>Contacts</h2> */}
-        </Section>
-        <Section title="Contacts">
+          <SectionTitle>Contacts</SectionTitle>
           <Filter value={filter} onChange={this.changeFilter} />
           <ContactList
             contacts={filteredResults}
