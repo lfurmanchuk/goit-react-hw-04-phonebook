@@ -6,7 +6,7 @@ import { Label, Input, AddBtn, FormField } from './Form.styled';
 export class Form extends Component {
   // PropTypes як статична властивысть
   static propTypes = {
-    onSubmit: PropTypes.func.isRequired,
+    onFormSubmit: PropTypes.func.isRequired,
   };
 
   // Стейт форми з початковим пустим значенням
@@ -89,7 +89,3 @@ export class Form extends Component {
     );
   }
 }
-
-Form.propTypes = {
-  onFormSubmit: PropTypes.func.isRequired,
-};

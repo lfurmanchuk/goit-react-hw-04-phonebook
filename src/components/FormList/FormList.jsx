@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { List, Item, DeleteBtn, Tel } from './FormList.styled';
 
 // Приймає всі наявні контакти, складає в єдиний ul і підключає метод для можливості видалення контакту
@@ -16,12 +17,18 @@ export const ContactList = ({ contacts, onDeleteContact }) => {
             Delete
           </DeleteBtn>
         </Item>
-        // <li
-        //   contact={contact}
-        //   onDeleteContact={onDeleteContact}
-        //   key={contact.id}
-        // />
       ))}
     </List>
   );
+};
+
+ContactList.propTypes = {
+  contacts: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      number: PropTypes.string.isRequired,
+    })
+  ),
+  onDeleteContact: PropTypes.func.isRequired,
 };
