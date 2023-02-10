@@ -19,6 +19,28 @@ export class App extends Component {
     filter: '',
   };
 
+  // componentDidMount() викликається відразу після монтування компонента
+  //  не можна робити стрілковою функцією!
+  componentDidMount() {
+    // зчитує сховище, парсить його у масив і запусує у state
+    const contacts = localStorage.getItem('contactsList');
+    const parsedContacts = JSON.parse(contacts);
+
+    // перевіряє навність даних у сховищі і при навності записує у state
+    if (parsedContacts) {
+      this.setState({ contacts: parsedContacts });
+    }
+  }
+
+  // componentDidUpdate() викликається відразу після оновлення
+  // не викликається під час першого рендеру
+  //  не можна робити стрілковою функцією!
+  componentDidUpdate(prevProps, prevState) {
+    // порівнює поточні пропси з попередніми
+    if (this.state.contacts !== prevState.contacts)
+      localStorage.setItem('contactsList', JSON.stringify(this.state.contacts));
+  }
+
   addContact = ({ name, number }) => {
     // Перевірка на дублювання
     if (this.checkContact(name)) {
