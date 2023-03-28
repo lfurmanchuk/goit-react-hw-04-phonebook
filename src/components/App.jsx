@@ -3,9 +3,9 @@
 import { useState, useEffect } from 'react';
 import Form from './Form/Form';
 import { nanoid } from 'nanoid';
-import { Section } from './Section/Section';
-import { Filter } from './Filter/Filter';
-import { ContactList } from './FormList/FormList';
+import Section from './Section/Section';
+import Filter from './Filter/Filter';
+import ContactList from './FormList/FormList';
 import { SectionTitle } from './Section/Section.styled';
 
 export default function App() {
@@ -31,8 +31,8 @@ export default function App() {
         ]);
   };
 
-  const handleChange = evt => {
-    setFilter(evt.target.value);
+  const handleChange = e => {
+    setFilter(e.target.value);
   };
 
   const handleDelete = id => {
@@ -57,13 +57,10 @@ export default function App() {
       }}
     >
       <Section title="Phonebook">
-        <Form onFormSubmit={formSubmitHandler}></Form>
+        <Form formSubmitHandler={formSubmitHandler}></Form>
         <SectionTitle>Contacts</SectionTitle>
         <Filter value={filter} onChange={handleChange} />
-        <ContactList
-          contacts={contactsFiltered}
-          onDeleteContact={handleDelete}
-        />
+        <ContactList contacts={contactsFiltered} handleDelete={handleDelete} />
       </Section>
     </div>
   );

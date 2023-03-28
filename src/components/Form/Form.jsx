@@ -13,7 +13,7 @@ export default function Form({ formSubmitHandler }) {
 
   // Метод, що спостерігає за інпутами і записує в state їх значення
   const handleChange = e => {
-    const { name, value } = e.currentTarget;
+    const { name, value } = e.target;
 
     switch (name) {
       case 'name':
